@@ -47,7 +47,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="650.0" prefWidth="797.0" styleClass="vbox" stylesheets="@../estilos/estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.biblioteca.mvc.vista.iugpestanas.controladoresvistas.ControladorVentanaPrincipal">
+<VBox prefHeight="650.0" prefWidth="914.0" styleClass="vbox" stylesheets="@../estilos/estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.biblioteca.mvc.vista.iugpestanas.controladoresvistas.ControladorVentanaPrincipal">
 	<children>
 		<MenuBar VBox.vgrow="NEVER">
 			<menus>
@@ -69,13 +69,13 @@
 					<content>
 						<VBox prefHeight="200.0" prefWidth="100.0">
 							<children>
-								<Label prefHeight="62.0" prefWidth="718.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="PRESTAMOS EN CURSO" textAlignment="RIGHT" />
-								<TableView fx:id="tvPrestamosEnCurso" prefHeight="402.0" prefWidth="751.0">
+								<Label alignment="CENTER" prefHeight="46.0" prefWidth="914.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="PRESTAMOS EN CURSO" textAlignment="RIGHT" />
+								<TableView fx:id="tvPrestamosEnCurso" prefHeight="384.0" prefWidth="914.0">
 									<columns>
-										<TableColumn fx:id="tcPCtipolibro" prefWidth="91.0" text="Tipo de Libro" />
-										<TableColumn fx:id="tcPCtitulolibro" prefWidth="215.0" text="Titulo" />
-										<TableColumn fx:id="tcPCalumno" prefWidth="213.0" text="Alumno" />
-										<TableColumn fx:id="tcPCfechaprestamo" minWidth="0.0" prefWidth="231.0" text="Fecha de Prestamo" />
+										<TableColumn fx:id="tcPCtipolibro" prefWidth="125.0" text="Tipo de Libro" />
+										<TableColumn fx:id="tcPCtitulolibro" prefWidth="283.0" text="Titulo" />
+										<TableColumn fx:id="tcPCalumno" prefWidth="279.0" text="Alumno" />
+										<TableColumn fx:id="tcPCfechaprestamo" minWidth="0.0" prefWidth="226.0" text="Fecha de Prestamo" />
 									</columns>
 									<contextMenu>
 										<ContextMenu>
@@ -89,7 +89,7 @@
 								</TableView>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoPrestamo" prefHeight="26.0" prefWidth="143.0" text="Nuevo Préstamo" textAlignment="CENTER">
                            <VBox.margin>
-                              <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
+                              <Insets bottom="25.0" left="380.0" right="380.0" top="25.0" />
                            </VBox.margin>
                         </Button>
 							</children>
@@ -100,14 +100,14 @@
 					<content>
 						<VBox prefHeight="250.0" prefWidth="751.0">
 							<children>
-								<Label prefHeight="40.0" prefWidth="751.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="PRESTAMOS DEVUELTOS" />
-								<TableView fx:id="tvPrestamosDevueltos" prefHeight="373.0" prefWidth="718.0">
+								<Label alignment="CENTER" prefHeight="46.0" prefWidth="914.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="PRESTAMOS DEVUELTOS" />
+								<TableView fx:id="tvPrestamosDevueltos" prefHeight="383.0" prefWidth="914.0">
 									<columns>
-										<TableColumn fx:id="tcPDtipolibro" prefWidth="89.0" text="Tipo de Libro" />
-										<TableColumn fx:id="tcPDtitulolibro" prefWidth="187.0" text="Titulo" />
-										<TableColumn fx:id="tcPDalumno" minWidth="0.0" prefWidth="213.0" text="Alumno" />
-										<TableColumn fx:id="tcPDfechaprestamo" prefWidth="127.0" text="Fecha de Prestamo" />
-										<TableColumn fx:id="tcPDfechadevolucion" prefWidth="134.0" text="Fecha de Devolucion" />
+										<TableColumn fx:id="tcPDtipolibro" prefWidth="125.0" text="Tipo de Libro" />
+										<TableColumn fx:id="tcPDtitulolibro" prefWidth="244.0" text="Titulo" />
+										<TableColumn fx:id="tcPDalumno" minWidth="0.0" prefWidth="250.0" text="Alumno" />
+										<TableColumn fx:id="tcPDfechaprestamo" minWidth="0.0" prefWidth="151.0" text="Fecha de Prestamo" />
+										<TableColumn fx:id="tcPDfechadevolucion" prefWidth="142.0" text="Fecha de Devolucion" />
 									</columns>
 									<contextMenu>
 										<ContextMenu>
@@ -132,15 +132,15 @@
 					<content>
 						<VBox prefHeight="200.0" prefWidth="100.0">
 							<children>
-								<Label alignment="CENTER" prefHeight="48.0" prefWidth="1053.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="LIBROS y AUDIOLIBROS" />
-								<TableView fx:id="tvLibros" prefHeight="405.0" prefWidth="797.0">
+								<Label alignment="CENTER" prefHeight="46.0" prefWidth="914.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="LIBROS Y AUDIOLIBROS" />
+								<TableView fx:id="tvLibros" prefHeight="384.0" prefWidth="914.0">
 									<columns>
-										<TableColumn fx:id="tcTLtipolibro" prefWidth="92.0" text="Tipo de Libro" />
-										<TableColumn fx:id="tcTLtitulo" prefWidth="133.0" text="Titulo" />
-										<TableColumn fx:id="tcTLautor" minWidth="0.0" prefWidth="221.0" text="Autor" />
-										<TableColumn fx:id="tcTLpaginas" minWidth="0.0" prefWidth="103.0" text="Nº de Paginas" />
-										<TableColumn fx:id="tcTLduracion" minWidth="0.0" prefWidth="79.0" text="Duracion" />
-										<TableColumn fx:id="tcTLpuntos" prefWidth="89.0" text="Puntos" />
+										<TableColumn fx:id="tcTLtipolibro" prefWidth="126.0" text="Tipo de Libro" />
+										<TableColumn fx:id="tcTLtitulo" prefWidth="243.0" text="Titulo" />
+										<TableColumn fx:id="tcTLautor" minWidth="0.0" prefWidth="211.0" text="Autor" />
+										<TableColumn fx:id="tcTLpaginas" minWidth="0.0" prefWidth="124.0" text="Nº de Paginas" />
+										<TableColumn fx:id="tcTLduracion" minWidth="0.0" prefWidth="97.0" text="Duracion" />
+										<TableColumn fx:id="tcTLpuntos" prefWidth="111.0" text="Puntos" />
 									</columns>
 									<contextMenu>
 										<ContextMenu>
@@ -152,7 +152,7 @@
 								</TableView>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoLibro" prefHeight="26.0" prefWidth="143.0" text="Nuevo Libro" textAlignment="CENTER">
                            <VBox.margin>
-                              <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
+                              <Insets bottom="25.0" left="380.0" right="380.0" top="25.0" />
                            </VBox.margin>
                         </Button>
 							</children>
@@ -170,7 +170,7 @@
 					<content>
 						<VBox prefHeight="200.0" prefWidth="100.0">
 							<children>
-								<Label alignment="CENTER" prefHeight="60.0" prefWidth="797.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="ALUMNOS" textAlignment="CENTER">
+								<Label alignment="CENTER" prefHeight="46.0" prefWidth="914.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="ALUMNOS" textAlignment="CENTER">
                            <font>
                               <Font size="20.0" />
                            </font></Label>
@@ -190,7 +190,7 @@
 								</TableView>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoAlumno" prefHeight="26.0" prefWidth="143.0" text="Nuevo Alumno" textAlignment="CENTER">
                            <VBox.margin>
-                              <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
+                              <Insets bottom="25.0" left="380.0" right="380.0" top="25.0" />
                            </VBox.margin>
                         </Button>
 							</children>
@@ -206,7 +206,7 @@
 				</Tab>
             <Tab text="Buscar">
                <content>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="753.0" styleClass="vbox" stylesheets="@../estilos/estilos.css">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="911.0" styleClass="vbox" stylesheets="@../estilos/estilos.css">
                      <children>
                         <Label style="-fx-font: 20 Arial; -fx-font-weight: bold;" text="BUSCAR PRÉSTAMO">
                            <padding>
@@ -232,29 +232,32 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <ListView fx:id="lvAlumnos" prefHeight="93.0" prefWidth="305.0" />
-                              <TableView fx:id="tvLibrosBusqueda" prefHeight="93.0" prefWidth="469.0">
+                              <TableView fx:id="tvLibrosBusqueda" prefHeight="100.0" prefWidth="586.0">
                                  <columns>
-                                    <TableColumn fx:id="tcAutorBusqueda" prefWidth="238.0" text="Autor" />
-                                    <TableColumn fx:id="tcTituloBusqueda" minWidth="0.0" prefWidth="220.0" text="Titulo" />
+                                    <TableColumn fx:id="tcAutorBusqueda" prefWidth="175.0" text="Autor" />
+                                    <TableColumn fx:id="tcTituloBusqueda" minWidth="0.0" prefWidth="410.0" text="Titulo" />
                                  </columns>
                               </TableView>
                            </children>
                         </HBox>
-                        <Label prefHeight="35.0" prefWidth="234.0" style="-fx-font: 20 Arial; -fc-font-weight: bold;" text="RESULTADOS">
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="234.0" style="-fx-font: 20 Arial; -fc-font-weight: bold;" text="RESULTADOS">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Candara Bold" size="12.0" />
+                           </font>
                         </Label>
                         <TableView fx:id="tvPrestamosBusqueda" prefHeight="200.0" prefWidth="634.0">
                            <columns>
-                              <TableColumn fx:id="tcTPtipo" prefWidth="75.0" text="TIPO DE LIBRO" />
-                              <TableColumn fx:id="tcTPtitulo" prefWidth="105.0" text="TITULO" />
-                              <TableColumn fx:id="tcTPalumno" prefWidth="136.0" text="ALUMNO" />
-                              <TableColumn fx:id="tcTPfechaPrestamo" prefWidth="148.0" text="FECHA DE PRESTAMO" />
-                              <TableColumn fx:id="tcTPfechaDevolucion" prefWidth="135.0" text="FECHA DE DEVOLUCION" />
+                              <TableColumn fx:id="tcTPtipo" prefWidth="123.0" text="TIPO DE LIBRO" />
+                              <TableColumn fx:id="tcTPtitulo" prefWidth="168.0" text="TITULO" />
+                              <TableColumn fx:id="tcTPalumno" prefWidth="233.0" text="ALUMNO" />
+                              <TableColumn fx:id="tcTPfechaPrestamo" prefWidth="167.0" text="FECHA DE PRESTAMO" />
+                              <TableColumn fx:id="tcTPfechaDevolucion" minWidth="0.0" prefWidth="181.0" text="FECHA DE DEVOLUCION" />
                            </columns>
                            
 <padding>
@@ -267,17 +270,27 @@
                      </padding>
                   </VBox>
                </content>
+               <graphic>
+                  <ImageView fitHeight="58.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/lupa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Tab>
             <Tab text="Estadísticas">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="720.0" text="ESTADISTICAS POR CURSO">
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="914.0" text="ESTADISTICAS POR CURSO">
                            <VBox.margin>
-                              <Insets top="100.0" />
+                              <Insets top="25.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
                         </Label>
-                        <GridPane prefWidth="718.0">
+                        <GridPane prefHeight="448.0" prefWidth="914.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -316,11 +329,11 @@
                                     <Insets left="100.0" right="100.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="378.0" text="SELECCIONAR FECHA" />
-                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="379.0" text="1º" GridPane.rowIndex="1" />
-                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="363.0" text="2º" GridPane.rowIndex="2" />
-                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="365.0" text="3º" GridPane.rowIndex="3" />
-                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="364.0" text="4º" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="458.0" text="SELECCIONAR FECHA" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="463.0" text="1º" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="459.0" text="2º" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="460.0" text="3º" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="458.0" text="4º" GridPane.rowIndex="4" />
                            </children>
                            <VBox.margin>
                               <Insets top="20.0" />
@@ -329,6 +342,13 @@
                      </children>
                   </VBox>
                </content>
+               <graphic>
+                  <ImageView fitHeight="58.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/estadistica.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Tab>
 			</tabs>
 		</TabPane>
