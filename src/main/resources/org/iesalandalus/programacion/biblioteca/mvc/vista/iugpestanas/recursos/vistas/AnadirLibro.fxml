@@ -35,7 +35,7 @@
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></Label>
-            <Label text="Nº PAGINAS" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Label fx:id="lbLibro" text="Nº PAGINAS" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></Label>
@@ -55,11 +55,7 @@
                </GridPane.margin>
             </HBox>
             <TextField fx:id="tfNumeroPaginas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="DURACION" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></Label>
-            <TextField fx:id="tfDuracion" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfDuracion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <opaqueInsets>
             <Insets />

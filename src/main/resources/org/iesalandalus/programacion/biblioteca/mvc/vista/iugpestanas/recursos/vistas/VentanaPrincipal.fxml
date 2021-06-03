@@ -22,50 +22,48 @@
 	NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 	EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="517.0" prefWidth="718.0" styleClass="vbox" stylesheets="@../estilos/estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.biblioteca.mvc.vista.iugpestanas.controladoresvistas.ControladorVentanaPrincipal">
+<VBox prefHeight="650.0" prefWidth="797.0" styleClass="vbox" stylesheets="@../estilos/estilos.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.biblioteca.mvc.vista.iugpestanas.controladoresvistas.ControladorVentanaPrincipal">
 	<children>
 		<MenuBar VBox.vgrow="NEVER">
 			<menus>
-				<Menu mnemonicParsing="false" text="Nuevo">
+				<Menu mnemonicParsing="false" text="Archivo">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#nuevoPrestamo" text="Prestamo" />
-						<MenuItem mnemonicParsing="false" onAction="#nuevoLibro" text="Libro" />
-						<MenuItem mnemonicParsing="false" onAction="#nuevoAlumno" text="Alumno" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Buscar">
-					<items>
-						<MenuItem mnemonicParsing="false" onAction="#buscarPrestamos" text="Prestamo" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Estadisticas">
-					<items>
-						<MenuItem mnemonicParsing="false" onAction="#mostrarEstadisticas" text="Por Curso" />
+						<MenuItem mnemonicParsing="false" onAction="#salir" text="Salir" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Ayuda">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#acercaDe" text="Acerca De ..." />
+						<MenuItem mnemonicParsing="false" onAction="#acercaDe" text="Acerca de" />
 					</items>
 				</Menu>
 			</menus>
 		</MenuBar>
-		<TabPane prefHeight="503.0" prefWidth="751.0" tabClosingPolicy="UNAVAILABLE">
+		<TabPane prefHeight="603.0" prefWidth="803.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
 				<Tab text="En Prestamo">
 					<content>
@@ -89,6 +87,11 @@
 										</ContextMenu>
 									</contextMenu>
 								</TableView>
+                        <Button fx:id="btNuevoPrestamo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoPrestamo" prefHeight="26.0" prefWidth="143.0" text="Nuevo Préstamo" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
 							</children>
 						</VBox>
 					</content>
@@ -129,8 +132,8 @@
 					<content>
 						<VBox prefHeight="200.0" prefWidth="100.0">
 							<children>
-								<Label prefHeight="48.0" prefWidth="1053.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="LIBROS y AUDIOLIBROS" />
-								<TableView fx:id="tvLibros" prefHeight="387.0" prefWidth="751.0">
+								<Label alignment="CENTER" prefHeight="48.0" prefWidth="1053.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="LIBROS y AUDIOLIBROS" />
+								<TableView fx:id="tvLibros" prefHeight="405.0" prefWidth="797.0">
 									<columns>
 										<TableColumn fx:id="tcTLtipolibro" prefWidth="92.0" text="Tipo de Libro" />
 										<TableColumn fx:id="tcTLtitulo" prefWidth="133.0" text="Titulo" />
@@ -147,6 +150,11 @@
 										</ContextMenu>
 									</contextMenu>
 								</TableView>
+                        <Button fx:id="btNuevoLibro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoLibro" prefHeight="26.0" prefWidth="143.0" text="Nuevo Libro" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
 							</children>
 						</VBox>
 					</content>
@@ -162,11 +170,11 @@
 					<content>
 						<VBox prefHeight="200.0" prefWidth="100.0">
 							<children>
-								<Label alignment="CENTER" prefHeight="123.0" prefWidth="718.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="ALUMNOS" textAlignment="CENTER">
+								<Label alignment="CENTER" prefHeight="60.0" prefWidth="797.0" style="-fx-font-weight: bold; -fx-font: 20 Arial;" text="ALUMNOS" textAlignment="CENTER">
                            <font>
                               <Font size="20.0" />
                            </font></Label>
-								<TableView fx:id="tvAlumnos" prefHeight="463.0" prefWidth="751.0">
+								<TableView fx:id="tvAlumnos" prefHeight="384.0" prefWidth="797.0">
 									<columns>
 										<TableColumn fx:id="tcTAnombre" prefWidth="240.0" text="Nombre" />
 										<TableColumn fx:id="tcTAcorreo" prefWidth="320.0" text="Correo" />
@@ -180,6 +188,11 @@
 										</ContextMenu>
 									</contextMenu>
 								</TableView>
+                        <Button fx:id="btNuevoAlumno" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoAlumno" prefHeight="26.0" prefWidth="143.0" text="Nuevo Alumno" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
 							</children>
 						</VBox>
 					</content>
@@ -191,6 +204,139 @@
                   </ImageView>
                </graphic>
 				</Tab>
+            <Tab text="Buscar">
+               <content>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="753.0" styleClass="vbox" stylesheets="@../estilos/estilos.css">
+                     <children>
+                        <Label style="-fx-font: 20 Arial; -fx-font-weight: bold;" text="BUSCAR PRÉSTAMO">
+                           <padding>
+                              <Insets bottom="20.0" top="20.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                           <children>
+                              <Label text="Buscar por:" />
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <RadioButton fx:id="rbAlumno" mnemonicParsing="false" text="Por Alumno" />
+                                    <RadioButton fx:id="rbLibro" mnemonicParsing="false" text="Por Libro" />
+                                    <RadioButton fx:id="rbFecha" mnemonicParsing="false" text="Por Fecha" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </VBox>
+                              <DatePicker fx:id="dpFechaBuscar" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ListView fx:id="lvAlumnos" prefHeight="93.0" prefWidth="305.0" />
+                              <TableView fx:id="tvLibrosBusqueda" prefHeight="93.0" prefWidth="469.0">
+                                 <columns>
+                                    <TableColumn fx:id="tcAutorBusqueda" prefWidth="238.0" text="Autor" />
+                                    <TableColumn fx:id="tcTituloBusqueda" minWidth="0.0" prefWidth="220.0" text="Titulo" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </HBox>
+                        <Label prefHeight="35.0" prefWidth="234.0" style="-fx-font: 20 Arial; -fc-font-weight: bold;" text="RESULTADOS">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TableView fx:id="tvPrestamosBusqueda" prefHeight="200.0" prefWidth="634.0">
+                           <columns>
+                              <TableColumn fx:id="tcTPtipo" prefWidth="75.0" text="TIPO DE LIBRO" />
+                              <TableColumn fx:id="tcTPtitulo" prefWidth="105.0" text="TITULO" />
+                              <TableColumn fx:id="tcTPalumno" prefWidth="136.0" text="ALUMNO" />
+                              <TableColumn fx:id="tcTPfechaPrestamo" prefWidth="148.0" text="FECHA DE PRESTAMO" />
+                              <TableColumn fx:id="tcTPfechaDevolucion" prefWidth="135.0" text="FECHA DE DEVOLUCION" />
+                           </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#devolverPrestamo" text="Devolver" />
+                                    <MenuItem mnemonicParsing="false" onAction="#borrarPrestamo" text="Borrar" />
+                                 </items>
+                              </ContextMenu>
+                           </contextMenu>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Estadísticas">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="16.0" prefWidth="720.0" text="ESTADISTICAS POR CURSO">
+                           <VBox.margin>
+                              <Insets top="100.0" />
+                           </VBox.margin>
+                        </Label>
+                        <GridPane prefWidth="718.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <DatePicker fx:id="dpEstadistica" prefHeight="26.0" prefWidth="258.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="100.0" right="100.0" />
+                                 </GridPane.margin>
+                              </DatePicker>
+                              <TextField fx:id="tfPrimero" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="100.0" right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="tfSegundo" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="100.0" right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="tfTercero" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="100.0" right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="tfCuarto" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="100.0" right="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="378.0" text="SELECCIONAR FECHA" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="379.0" text="1º" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="363.0" text="2º" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="365.0" text="3º" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="364.0" text="4º" GridPane.rowIndex="4" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
 			</tabs>
 		</TabPane>
 	</children>

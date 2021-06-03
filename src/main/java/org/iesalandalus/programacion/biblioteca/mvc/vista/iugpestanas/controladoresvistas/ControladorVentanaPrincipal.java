@@ -1,7 +1,9 @@
 package org.iesalandalus.programacion.biblioteca.mvc.vista.iugpestanas.controladoresvistas;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.iesalandalus.programacion.biblioteca.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Alumno;
@@ -18,13 +20,21 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ListView;
 
 public class ControladorVentanaPrincipal {
 
@@ -33,6 +43,7 @@ public class ControladorVentanaPrincipal {
 	private ObservableList<Alumno> alumnos = FXCollections.observableArrayList();
 	private ObservableList<Prestamo> prestamospendientes = FXCollections.observableArrayList();
 	private ObservableList<Prestamo> prestamosdevueltos = FXCollections.observableArrayList();
+	private ObservableList<Prestamo> prestamos = FXCollections.observableArrayList();
 	private ObservableList<Libro> libros = FXCollections.observableArrayList();
 	
 	@FXML private TableView<Prestamo> tvPrestamosEnCurso;
@@ -61,19 +72,53 @@ public class ControladorVentanaPrincipal {
     @FXML private TableColumn<Alumno, String> tcTAcorreo;
     @FXML private TableColumn<Alumno, Curso> tcTAcurso;
 
+	@FXML private DatePicker dpEstadistica;
+	@FXML private TextField tfPrimero;
+	@FXML private TextField tfSegundo;
+	@FXML private TextField tfTercero;
+	@FXML private TextField tfCuarto;
+	
+	@FXML    private RadioButton rbAlumno;
+    @FXML    private RadioButton rbLibro;
+    @FXML    private RadioButton rbFecha;
+    @FXML    private DatePicker dpFechaBuscar;
+    
+    @FXML    private ListView<Alumno> lvAlumnos;
+    
+    @FXML    private TableView<Libro> tvLibrosBusqueda;
+    @FXML    private TableColumn<Libro, String> tcAutorBusqueda;
+    @FXML    private TableColumn<Libro, String> tcTituloBusqueda;
+    
+    @FXML    private TableView<Prestamo> tvPrestamosBusqueda;
+    @FXML    private TableColumn<Prestamo, String> tcTPtipo;
+    @FXML    private TableColumn<Prestamo, String> tcTPtitulo;
+    @FXML    private TableColumn<Prestamo, String> tcTPalumno;
+    @FXML    private TableColumn<Prestamo, String> tcTPfechaPrestamo;
+    @FXML    private TableColumn<Prestamo, String> tcTPfechaDevolucion;
+
+	private ToggleGroup tgEleccion = new ToggleGroup();
+
     private Stage anadirAlumno;
     private ControladorAnadirAlumno cAnadirAlumno;
     private Stage anadirLibro;
     private ControladorAnadirLibro cAnadirLibro;
     private Stage anadirPrestamo;
     private ControladorAnadirPrestamo cAnadirPrestamo;
-    private Stage mostrarEstadisticas;
-    private ControladorEstadisticas cEstadisticas;
     private Stage insertarFechaDevolucion;
     private ControladorFechaDevolucion cFechaDevolucion;
-    private Stage buscarPrestamo;
-    private ControladorBuscarPor cBuscarPrestamo;
     
+	private class CeldaAlumno extends ListCell<Alumno> {
+    	@Override
+    	public void updateItem(Alumno alumno, boolean vacio) {
+    		super.updateItem(alumno, vacio);
+    		if (vacio) {
+    			setText("");
+    		} else {
+    			setText(alumno.getCorreo());
+    		}
+    	}
+    }
+
     @FXML
     private void initialize() {
     	
@@ -90,7 +135,6 @@ public class ControladorVentanaPrincipal {
     	tcPDfechadevolucion.setCellValueFactory(prestamo -> new SimpleStringProperty(prestamo.getValue().getFechaDevolucion().toString()));
     	tvPrestamosDevueltos.setItems(prestamosdevueltos);
     	
-    	
     	tcTLtipolibro.setCellValueFactory(libro -> new SimpleStringProperty(libro.getValue().getNombreClase()));
     	tcTLtitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
     	tcTLautor.setCellValueFactory(new PropertyValueFactory<>("autor"));
@@ -103,6 +147,40 @@ public class ControladorVentanaPrincipal {
     	tcTAcorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
     	tcTAcurso.setCellValueFactory(new PropertyValueFactory<>("curso"));
     	tvAlumnos.setItems(alumnos);
+
+		tfPrimero.setDisable(true);
+		tfSegundo.setDisable(true);
+		tfTercero.setDisable(true);
+		tfCuarto.setDisable(true);
+		dpEstadistica.valueProperty().addListener((ob, ov, nv) -> comprobarFecha(dpEstadistica));
+		
+		rbAlumno.setToggleGroup(tgEleccion);
+    	rbLibro.setToggleGroup(tgEleccion);
+    	rbFecha.setToggleGroup(tgEleccion);
+		tgEleccion.selectToggle(rbFecha);
+    	tgEleccion.selectedToggleProperty().addListener((ob, ov, nv) -> comprobarSeleccionBotonBuscar());
+
+		lvAlumnos.setDisable(true);
+    	tvLibrosBusqueda.setDisable(true);
+
+		lvAlumnos.setItems(alumnos);
+    	lvAlumnos.setCellFactory(l -> new CeldaAlumno());
+    	lvAlumnos.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    	lvAlumnos.getSelectionModel().selectedItemProperty().addListener((ob, ov, nv) -> actualizaBuscarPrestamos());
+
+		tcTituloBusqueda.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+    	tcAutorBusqueda.setCellValueFactory(new PropertyValueFactory<>("autor"));
+    	tvLibrosBusqueda.setItems(libros);
+    	tvLibrosBusqueda.getSelectionModel().selectedItemProperty().addListener((ob, ov, nv) -> actualizaBuscarPrestamos());
+
+		dpFechaBuscar.valueProperty().addListener((ob, ov , nv) -> actualizaBuscarPrestamos());
+
+		tcTPtipo.setCellValueFactory(prestamo -> new SimpleStringProperty(prestamo.getValue().getLibro().getNombreClase()));
+    	tcTPtitulo.setCellValueFactory(prestamo -> new SimpleStringProperty(prestamo.getValue().getLibro().getTitulo()));
+    	tcTPalumno.setCellValueFactory(prestamo -> new SimpleStringProperty(prestamo.getValue().getAlumno().getCorreo()));
+    	tcTPfechaPrestamo.setCellValueFactory(prestamo -> new SimpleStringProperty(prestamo.getValue().getFechaPrestamo().toString()));
+    	tcTPfechaDevolucion.setCellValueFactory(prestamo -> new SimpleStringProperty(prestamo.getValue().getFechaDevolucionString()));
+    	tvPrestamosBusqueda.setItems(prestamos);
     }
     
     public void setControladorMVC(IControlador controladorMVC) {
@@ -128,18 +206,12 @@ public class ControladorVentanaPrincipal {
     }
     
     @FXML
-    private void buscarPrestamos() throws IOException {
-    	crearBuscarPrestamo();
-    	buscarPrestamo.showAndWait();
-    	actualizarPrestamosEnCurso();
-    	actualizaPrestamosDevueltos();
-    }
-    
-    @FXML
-    private void mostrarEstadisticas() throws IOException {
-    	crearEstadisticas();
-    	mostrarEstadisticas.showAndWait();
-    }
+	private void salir() {
+		if (Dialogos.mostrarDialogoConfirmacion("Salir", "¿Estás seguro de que quieres salir de la aplicación?", null)) {
+			controladorMVC.terminar();
+			System.exit(0);
+		}
+	}
     
     @FXML
     private void acercaDe() throws IOException {
@@ -227,6 +299,12 @@ public class ControladorVentanaPrincipal {
     	}
     }
     
+	public void actualizarPrestamos() {
+		prestamos.clear();
+		tvPrestamosEnCurso.getSelectionModel().clearSelection();
+		prestamos.setAll(controladorMVC.getPrestamos());
+	}
+
     public void actualizarPrestamosEnCurso() {
     	prestamospendientes.clear();
     	tvPrestamosEnCurso.getSelectionModel().clearSelection();
@@ -260,7 +338,57 @@ public class ControladorVentanaPrincipal {
     	tvAlumnos.getSelectionModel().clearSelection();
     	alumnos.setAll(controladorMVC.getAlumnos());
     }
+
+	public void actualizarEstadisticas() {
+		dpEstadistica.setValue(LocalDate.now());
+		Map<Curso, Integer> mapa = controladorMVC.getEstadisticasMensualPorCurso(LocalDate.now());
+    	tfPrimero.setText(mapa.get(Curso.PRIMERO).toString());
+    	tfSegundo.setText(mapa.get(Curso.SEGUNDO).toString());
+    	tfTercero.setText(mapa.get(Curso.TERCERO).toString());
+    	tfCuarto.setText(mapa.get(Curso.CUARTO).toString());
+	}
+	
+	private void actualizaBuscarPrestamos() {
+    	prestamos.clear();
+    	tvPrestamosBusqueda.getSelectionModel().clearSelection();
+    	if (rbAlumno.isSelected()) {
+    		Alumno alumno = null;
+    		alumno = lvAlumnos.getSelectionModel().getSelectedItem();
+    		prestamos.setAll(controladorMVC.getPrestamos(alumno));
+    	} else if (rbLibro.isSelected()) {
+    		Libro libro = null;
+    		libro = tvLibrosBusqueda.getSelectionModel().getSelectedItem();
+    		prestamos.setAll(controladorMVC.getPrestamos(libro));
+    	} else if (rbFecha.isSelected()) {
+			LocalDate fecha = dpFechaBuscar.getValue();
+			prestamos.setAll(controladorMVC.getPrestamos(fecha));
+		}
+	}
+	
+	private void comprobarFecha(DatePicker dp) {
+    	Map<Curso, Integer> mapa = controladorMVC.getEstadisticasMensualPorCurso(dp.getValue());
+    	tfPrimero.setText(mapa.get(Curso.PRIMERO).toString());
+    	tfSegundo.setText(mapa.get(Curso.SEGUNDO).toString());
+    	tfTercero.setText(mapa.get(Curso.TERCERO).toString());
+    	tfCuarto.setText(mapa.get(Curso.CUARTO).toString());
+    }
     
+	private void comprobarSeleccionBotonBuscar() {
+    	if (rbAlumno.isSelected()) {
+    		lvAlumnos.setDisable(false);
+    		tvLibrosBusqueda.setDisable(true);
+    		dpFechaBuscar.setDisable(true);
+    	} else if (rbLibro.isSelected()) {
+    		lvAlumnos.setDisable(true);
+    		tvLibrosBusqueda.setDisable(false);
+    		dpFechaBuscar.setDisable(true);
+		} else if (rbFecha.isSelected()) {
+			lvAlumnos.setDisable(true);
+    		tvLibrosBusqueda.setDisable(true);
+    		dpFechaBuscar.setDisable(false);
+		}
+    }
+
     private void crearAnadirAlumno() throws IOException {
     	if (anadirAlumno == null) {
     		anadirAlumno = new Stage();
@@ -322,24 +450,6 @@ public class ControladorVentanaPrincipal {
     	}
     }
     
-    private void crearEstadisticas() throws IOException {
-    	if (mostrarEstadisticas == null) {
-    		mostrarEstadisticas = new Stage();
-    		FXMLLoader cargadorEstadisticas = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/Estadisticas.fxml"));
-    		VBox raizEstadisticas = cargadorEstadisticas.load();
-    		cEstadisticas = cargadorEstadisticas.getController();
-    		cEstadisticas.setControladorMVC(controladorMVC);
-    		cEstadisticas.inicializa();
-    		
-    		Scene escenaEstadisticas = new Scene(raizEstadisticas);
-    		mostrarEstadisticas.setTitle("Estadisticas");
-    		mostrarEstadisticas.initModality(Modality.APPLICATION_MODAL);
-    		mostrarEstadisticas.setScene(escenaEstadisticas);
-    	} else {
-    		cEstadisticas.inicializa();
-    	}
-    }
-    
     private void crearDevolucion(Prestamo prestamo) throws IOException {
     	if (insertarFechaDevolucion == null) {
     		insertarFechaDevolucion = new Stage();
@@ -357,30 +467,6 @@ public class ControladorVentanaPrincipal {
     	} else {
     		cFechaDevolucion.setPrestamo(prestamo);
     		cFechaDevolucion.inicializa();
-    	}
-    }
-    
-    private void crearBuscarPrestamo() throws IOException {
-    	if (buscarPrestamo == null) {
-    		buscarPrestamo = new Stage();
-    		FXMLLoader cargadorBuscarPor = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/BuscarPor.fxml"));
-    		VBox raizBuscarPor = cargadorBuscarPor.load();
-    		cBuscarPrestamo = cargadorBuscarPor.getController();
-    		cBuscarPrestamo.setControladorMVC(controladorMVC);
-    		cBuscarPrestamo.setPadre(this);
-    		cBuscarPrestamo.actualizaAlumnos();
-    		cBuscarPrestamo.actualizaLibros();
-    		cBuscarPrestamo.inicializa();
-    		
-    		Scene escenaBuscaPor = new Scene(raizBuscarPor);
-    		buscarPrestamo.setTitle("Buscar Préstamo");
-    		buscarPrestamo.initModality(Modality.APPLICATION_MODAL);
-    		buscarPrestamo.setScene(escenaBuscaPor);
-    	} else {
-    		cBuscarPrestamo.actualizaAlumnos();
-    		cBuscarPrestamo.actualizaLibros();
-    		cBuscarPrestamo.inicializa();
-    		
     	}
     }
 }

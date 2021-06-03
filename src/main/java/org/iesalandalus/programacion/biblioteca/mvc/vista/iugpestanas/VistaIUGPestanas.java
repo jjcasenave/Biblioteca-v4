@@ -39,10 +39,12 @@ public class VistaIUGPestanas extends Application implements IVista {
 			VBox raiz = cargadorVentanaPrincipal.load();	
 			ControladorVentanaPrincipal cVentanaPrincipal = cargadorVentanaPrincipal.getController();
 			cVentanaPrincipal.setControladorMVC(controladorMVC);
+			cVentanaPrincipal.actualizarPrestamos();
 			cVentanaPrincipal.actualizarPrestamosEnCurso();
 			cVentanaPrincipal.actualizaPrestamosDevueltos();
 			cVentanaPrincipal.actualizarLibros();
 			cVentanaPrincipal.actualizarAlumnos();
+			cVentanaPrincipal.actualizarEstadisticas();
 			
 			Scene escena = new Scene(raiz);
 			escenarioPrincipal.setOnCloseRequest(e -> confirmarSalida(escenarioPrincipal, e));

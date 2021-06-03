@@ -9,6 +9,7 @@ import org.iesalandalus.programacion.biblioteca.mvc.vista.iugpestanas.utilidades
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -20,7 +21,7 @@ public class ControladorAnadirLibro {
 	private ObservableList<Libro> libros;
 	
     @FXML    private TextField tfAutor;
-    
+    @FXML	 private Label lbLibro;
     @FXML    private TextField tfNombre;
     @FXML    private RadioButton rbEscrito;
     @FXML    private RadioButton rbAudio;
@@ -70,6 +71,7 @@ public class ControladorAnadirLibro {
     }
 
     public void inicializa() {
+    	//lbLibro.setText("Número de Páginas:");
 		tfNombre.setText("");
 		tfAutor.setText("");
 		tgTipoLibro.selectToggle(rbEscrito);
@@ -84,10 +86,16 @@ public class ControladorAnadirLibro {
     private void comprobarRadioButton() {
     	if (rbEscrito.isSelected()) {
     		tfDuracion.setDisable(true);
+    		tfDuracion.setVisible(false);
     		tfNumeroPaginas.setDisable(false);
+    		tfNumeroPaginas.setVisible(true);
+    		//lbLibro.setText("Número de Páginas");
     	} else if (rbAudio.isSelected()) {
     		tfDuracion.setDisable(false);
+    		tfDuracion.setVisible(true);
+    		tfNumeroPaginas.setVisible(false);
     		tfNumeroPaginas.setDisable(true);
+    		//lbLibro.setText("Duración:");
     	}
     }
     
