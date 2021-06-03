@@ -30,7 +30,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.ToggleGroup;
@@ -276,6 +275,8 @@ public class ControladorVentanaPrincipal {
     			controladorMVC.borrar(libro);
     			libros.remove(libro);
     			actualizarLibros();
+				actualizarPrestamos();
+				actualizarPrestamosEnCurso();
     			Dialogos.mostrarDialogoInformacion("Borrar Libro", "Libro borrado correctamente");    			
     		}
     	} catch (Exception e) {

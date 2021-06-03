@@ -71,7 +71,7 @@ public class ControladorAnadirLibro {
     }
 
     public void inicializa() {
-    	//lbLibro.setText("Número de Páginas:");
+    	lbLibro.setText("Prueba");
 		tfNombre.setText("");
 		tfAutor.setText("");
 		tgTipoLibro.selectToggle(rbEscrito);
@@ -89,13 +89,13 @@ public class ControladorAnadirLibro {
     		tfDuracion.setVisible(false);
     		tfNumeroPaginas.setDisable(false);
     		tfNumeroPaginas.setVisible(true);
-    		//lbLibro.setText("Número de Páginas");
+    		lbLibro.setText("Número de Páginas");
     	} else if (rbAudio.isSelected()) {
     		tfDuracion.setDisable(false);
     		tfDuracion.setVisible(true);
     		tfNumeroPaginas.setVisible(false);
     		tfNumeroPaginas.setDisable(true);
-    		//lbLibro.setText("Duración:");
+    		lbLibro.setText("Duración:");
     	}
     }
     

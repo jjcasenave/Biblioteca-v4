@@ -87,7 +87,7 @@
 										</ContextMenu>
 									</contextMenu>
 								</TableView>
-                        <Button fx:id="btNuevoPrestamo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoPrestamo" prefHeight="26.0" prefWidth="143.0" text="Nuevo Préstamo" textAlignment="CENTER">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoPrestamo" prefHeight="26.0" prefWidth="143.0" text="Nuevo Préstamo" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
                            </VBox.margin>
@@ -150,7 +150,7 @@
 										</ContextMenu>
 									</contextMenu>
 								</TableView>
-                        <Button fx:id="btNuevoLibro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoLibro" prefHeight="26.0" prefWidth="143.0" text="Nuevo Libro" textAlignment="CENTER">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoLibro" prefHeight="26.0" prefWidth="143.0" text="Nuevo Libro" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
                            </VBox.margin>
@@ -188,7 +188,7 @@
 										</ContextMenu>
 									</contextMenu>
 								</TableView>
-                        <Button fx:id="btNuevoAlumno" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoAlumno" prefHeight="26.0" prefWidth="143.0" text="Nuevo Alumno" textAlignment="CENTER">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nuevoAlumno" prefHeight="26.0" prefWidth="143.0" text="Nuevo Alumno" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="330.0" right="330.0" top="10.0" />
                            </VBox.margin>
@@ -256,15 +256,8 @@
                               <TableColumn fx:id="tcTPfechaPrestamo" prefWidth="148.0" text="FECHA DE PRESTAMO" />
                               <TableColumn fx:id="tcTPfechaDevolucion" prefWidth="135.0" text="FECHA DE DEVOLUCION" />
                            </columns>
-                           <contextMenu>
-                              <ContextMenu>
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#devolverPrestamo" text="Devolver" />
-                                    <MenuItem mnemonicParsing="false" onAction="#borrarPrestamo" text="Borrar" />
-                                 </items>
-                              </ContextMenu>
-                           </contextMenu>
-                           <padding>
+                           
+<padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
                         </TableView>
